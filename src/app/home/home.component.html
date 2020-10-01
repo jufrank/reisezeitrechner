@@ -1,0 +1,102 @@
+<div  id="homecontainer" class="container">
+<div class="row">
+
+
+  <h2 id="title">Erreichbarkeit mit dem öffentlichen Verkehr</h2>
+  <p id="intro">Berechnung der Reisezeit mit dem öV von einer Gemeinde zu den Kernstädten einer grossen Agglomeration</p>
+</div>
+
+<div class="col-lg-6">
+<div *ngIf="alert==1" class="alert alert-danger " role="alert">
+  Bitte Gemeinde auswählen!
+</div>
+<div *ngIf="ungueltigerName==1" class="alert alert-danger " role="alert">
+  Ungültiger Gemeindename! Fremdsprachige Schreibweise berücksichtigen!
+</div>
+</div>
+
+<form  #form="ngForm" (ngSubmit)="submitTemplateForm(form.value)">
+  <div  id="search" class="row">
+    <div class="col-lg-6">
+      <div class="forms">
+        <div style="margin-top:5px" class="template-driven-form">
+
+
+            <div>
+              <div class="ng-autocomplete">
+                <ng-autocomplete #ngAutoCompleteStatic
+                                [data]="gemeinden"
+                                name="name"
+                                [(ngModel)]="name"
+                                [initialValue]=""
+                                [placeHolder]="placeholder"
+                                [searchKeyword]="keyword"
+                                historyIdentifier="countriesTemplateList"
+                                [historyHeading]="historyHeading"
+                                historyListMaxNumber="3"
+                                notFoundText="Kein Resultat"
+                                [itemTemplate]="itemTemplateStatic"
+                                [notFoundTemplate]="notFoundTemplate">
+
+                </ng-autocomplete>
+
+
+                <ng-template #itemTemplateStatic let-item>
+                  <a [innerHTML]="item"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+
+
+            </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div *ngIf="loading==0" style="margin-top:5px"><button id="searchbutton" style="margin-top:0px" type="submit" class="btn btn-primary">Suchen&nbsp;&nbsp;<fa-icon [icon]="faSearch"></fa-icon></button></div>
+      <div *ngIf="loading==1"class="spinner-border" style="float: left; margin-left:8%; margin-top:10px; width: 2rem; height: 2rem;"></div>
+  </div>
+
+  </div>
+</form>
+
+
+
+
+<br>
+<div class="barchart col-lg-8 offset-lg-2">
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
+</div>
+<br>
+<div id="text">
+  <br>
+<h4>Erläuterungen:</h4>
+<h5>Ziel- und Endpunkte:</h5>Berechnet wird der Weg vom Zentrum einer Gemeinde in die Zentren der Kernstädte der grossen Agglomerationen in der Schweiz gemäss <a href="https://www.agvchapp.bfs.admin.ch/de/typologies/query">Bundesamt für Statistik</a> (Gemeindetyp 111: Kernstadt einer grossen Agglomeration). Die Zentren aller Gemeinden wurden anhand der vom Bundesamt für Statistik zur Verfügung gestellten <a href="https://www.bfs.admin.ch/bfs/de/home/dienstleistungen/geostat/geodaten-bundesstatistik/administrative-grenzen/generalisierte-gemeindegrenzen.html">Zentrumskoordinaten</a> definiert und anschliessend mit den <a href="https://www.swisstopo.admin.ch/de/karten-daten-online/calculation-services/reframe.html">Transformations und Rechendiensten von swisstopo </a>ins WGS84-Format konvertiert.
+<br><br>
+<h5>Fahrplanabfrage:</h5>Die Reisezeiten werden anhand des von der SBB zur Verfügung gestellten <a href="https://opentransportdata.swiss/de/dataset/ojp2020">OpenJourneyPlanners</a> berechnet. Ausgewiesen ist die Reisedauer bei Abfahrt am 01. Oktober 2020 um 08:00. Ab diesem Zeitpunkt wurden die nächsten zehn Verbindungen zwischen zwei Gemeinden abgefragt. Die jeweils schnellste davon wird anschliessend dargestellt.
+<br><br>
+<h5>Verwendete Ressourcen: </h5><a href="https://angular.io/">Angular</a>, <a href="https://getbootstrap.com/">Bootstrap</a>, <a href="https://valor-software.com/ng2-charts/">ng2-charts</a>,<a href="https://stackblitz.com/edit/angular-ng-autocomplete-with-forms?file=src%2Fapp%2Fapp.component.html">Form template by @gmerabishvili</a>,<a href="https://www.npmjs.com/package/xml2js">xml2js</a>
+</div>
+<br>
+</div>

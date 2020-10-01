@@ -1,0 +1,92 @@
+#homecontainer {
+
+  padding-left: 2%;
+
+
+}
+
+
+a{
+  color:darkblue;
+}
+.tp-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.tp-full-width {
+  width: 100%;
+}
+
+.ng-autocomplete {
+  max-width: 100%;
+}
+
+#search {
+  margin-top: 5vh;
+  margin-left:0px;
+}
+
+@media (max-width: 992px ) {
+  #searchbutton {
+    margin-top: 5vh;
+  }
+  }
+
+  @media (max-width: 992px ) {
+    #intro {
+      margin-left: 3vw;
+    }
+
+    #title {
+      margin-left: 3vw;
+    }
+
+
+    }
+
+
+
+h2 {
+  margin-top: 3%;
+  padding-left: 2%;
+}
+
+p {
+  padding-left: 2.3%;
+}
+
+#text {
+  padding-left: 2%;
+}
+
+.row .container {
+  margin-left:0px;
+  border-left: 0px;
+  padding-left: 0px;
+}
+
+.alert {
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.barchart {
+  margin-top: 5%;
+}
+
+
+
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid black; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

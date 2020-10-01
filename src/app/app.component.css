@@ -1,0 +1,7 @@
+#sticky-footer {
+  flex-shrink: none;
+}
+
+#footer {
+  background-color: rgb(124, 129, 131);
+}
